@@ -34,6 +34,9 @@
 
 
 # Reproducability
+## Using the checkpoints
+**TODO**
+
 ## Reproducing the paper results
 The [pyannote.audio](https://github.com/pyannote/pyannote-audio) version used to train these model is commit [e3dc7d6](https://github.com/pyannote/pyannote-audio/commit/e3dc7d68cc60c7d4f89df005b58674aa936b0882) (although it should not matter for this training, to be more precise it's commit [1f83e0b](https://github.com/pyannote/pyannote-audio/commit/1f83e0b867e5b9e0221e238e7955b7d6fc4ea967) with commit [e3dc7d6](https://github.com/pyannote/pyannote-audio/commit/e3dc7d68cc60c7d4f89df005b58674aa936b0882) changes cherry-picked).
 
@@ -60,3 +63,6 @@ seg_task = SpeakerDiarization(
 model = PyanNet(task=seg_task)
 ```
 
+# Citations 
+
+**TODO**
