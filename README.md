@@ -1,5 +1,36 @@
-# Performance of speaker diarization using powerset segmentation models
-## Out-of-the-box accuracy
+# Powerset multi-class cross entropy loss for neural speaker diarization
+
+[Alexis Plaquet](https://frenchkrab.github.io/) and [Hervé Bredin](https://herve.niderb.fr)  
+Proc. InterSpeech 2023.
+
+> Since its introduction in 2019, the whole end-to-end neural diarization (EEND) line of work has been addressing speaker diarization as a frame-wise multi-label classification problem with permutation-invariant training. Despite EEND showing great promise, a few recent works took a step back and studied the possible combination of (local) supervised EEND diarization with (global) unsupervised clustering. Yet, these hybrid contributions did not question the original multi-label formulation. We propose to switch from multi-label (where any two speakers can be active at the same time) to powerset multi-class classification (where dedicated classes are assigned to pairs of overlapping speakers). Through extensive experiments on 9 different benchmarks, we show that this formulation leads to significantly better performance (mostly on overlapping speech) and robustness to domain mismatch, while eliminating the detection threshold hyperparameter, critical for the multi-label formulation.
+
+## Citations
+
+```bibtex
+@inproceedings{Plaquet2023,
+  title={Powerset multi-class cross entropy loss for neural speaker diarization},
+  author={Plaquet, Alexis and Bredin, Herv\'{e}},
+  year={2023},
+  booktitle={Proc. Interspeech 2023},
+}
+
+@inproceedings{Bredin2023,
+  title={pyannote.audio 2.1 speaker diarization pipeline: principle, benchmark, and recipe},
+  author={Bredin, Herv\'{e}},
+  year={2023},
+  booktitle={Proc. Interspeech 2023},
+}
+```
+
+## Benchmark (and checkpoints)
+
+### Using the checkpoints
+
+**TODO**
+
+
+### Pretrained model
 
 Performance obtained with a model pretrained on AISHELL, AliMeeting, AMI, Ego4D, MSDWild, REPERE, and VoxConverse (see the paper for more details).
 
@@ -19,8 +50,7 @@ The [pretrained model checkpoint](models/powerset/powerset_pretrained.ckpt) used
 [This American Life](https://arxiv.org/abs/2005.08072) | 21.83 | 2.25 | 12.85 | 6.74 | [RTTM](rttm/powerset/pretrained/ThisAmericanLife.SpeakerDiarization.Benchmark.test.rttm) | [eval](eval/powerset/pretrained/ThisAmericanLife.SpeakerDiarization.Benchmark.test.eval)
 [AVA-AVD](https://arxiv.org/abs/2111.14448) | 60.60 | 18.54 | 16.19 | 25.87 | [RTTM](rttm/powerset/pretrained/AVA-AVD.SpeakerDiarization.Benchmark.test.rttm) | [eval](eval/powerset/pretrained/AVA-AVD.SpeakerDiarization.Benchmark.test.eval)
 
-
-## Accuracy after per-domain adaptation
+### Finetuned models
 
 Performance obtained after training the pretrained model further on one domain.
 
@@ -38,15 +68,12 @@ Performance obtained after training the pretrained model further on one domain.
 [AVA-AVD](https://arxiv.org/abs/2111.14448) | 46.45 | 6.71 | 17.75 | 21.98 | [RTTM](rttm/powerset/adapted/AVA-AVD.SpeakerDiarization.Benchmark.test.rttm) | [eval](eval/powerset/adapted/AVA-AVD.SpeakerDiarization.Benchmark.test.eval) | [checkpoint](models/powerset/adapted/AVA-AVD.ckpt)
 
 
+## Reproducibility
 
-# Reproducability
-## Using the checkpoints
-**TODO**
-
-## Reproducing the paper results
+### Reproducing the paper results
 The [pyannote.audio](https://github.com/pyannote/pyannote-audio) version used to train these model is commit [e3dc7d6](https://github.com/pyannote/pyannote-audio/commit/e3dc7d68cc60c7d4f89df005b58674aa936b0882) (although it should not matter for this training, to be more precise it's commit [1f83e0b](https://github.com/pyannote/pyannote-audio/commit/1f83e0b867e5b9e0221e238e7955b7d6fc4ea967) with commit [e3dc7d6](https://github.com/pyannote/pyannote-audio/commit/e3dc7d68cc60c7d4f89df005b58674aa936b0882) changes cherry-picked).
 
-## Training your own powerset segmentation model
+### Training your own powerset segmentation model
 You can train your own version of the model by using the [pyannote.audio](https://github.com/pyannote/pyannote-audio) develop branch (instructions in pyannote.audio's readme), or pyannote.audio v3.x when released.
 
 The `SpeakerDiarization` task can be set to use powerset or multilabel representation with its `max_speakers_per_frame` constructor parameter : "*Maximum number of (overlapping) speakers per frame. Setting this value to 1 or more enables `powerset multi-class` training.*"
@@ -69,6 +96,3 @@ seg_task = SpeakerDiarization(
 model = PyanNet(task=seg_task)
 ```
 
-# Citations 
-
-**TODO**
