@@ -68,12 +68,58 @@ Performance obtained after training the pretrained model further on one domain.
 [AVA-AVD](https://arxiv.org/abs/2111.14448) | 46.45 | 6.71 | 17.75 | 21.98 | [RTTM](rttm/powerset/adapted/AVA-AVD.SpeakerDiarization.Benchmark.test.rttm) | [eval](eval/powerset/adapted/AVA-AVD.SpeakerDiarization.Benchmark.test.eval) | [checkpoint](models/powerset/adapted/AVA-AVD.ckpt)
 
 
-## Reproducibility
+## Reproducability
+### Using checkpoints in a pipeline
+```python
+from pyannote.audio.models.segmentation import PyanNet
+from pyannote.audio.pipelines import SpeakerDiarization as SpeakerDiarizationPipeline
 
-### Reproducing the paper results
+# constants (params from the pyannote/speaker-diarization huggingface pipeline)
+WAV_FILE="../pyannote-audio/tutorials/assets/sample.wav"
+MODEL_PATH="models/powerset/powerset_pretrained.ckpt"
+TOKEN = "your HuggingFace token"
+PIPELINE_PARAMS = {
+    "clustering": {
+        "method": "centroid",
+        "min_cluster_size": 15,
+        "threshold": 0.7153814381597874,
+    },
+    "segmentation": {
+        "min_duration_off": 0.5817029604921046,
+        # "threshold": 0.4442333667381752,  # does not apply to powerset
+    },
+}
+
+# create, instantiate and apply the pipeline
+pipeline = SpeakerDiarizationPipeline(
+    segmentation=MODEL_PATH,
+    embedding="speechbrain/spkrec-ecapa-voxceleb",
+    embedding_exclude_overlap=True,
+    use_auth_token=TOKEN,
+)
+pipeline.instantiate(PIPELINE_PARAMS)
+pipeline(WAV_FILE)
+```
+
+### Using checkpoints for the segmentation model only
+```python
+from pyannote.audio import Model
+from pyannote.audio.tasks import SpeakerDiarization
+from pyannote.audio.core.inference import Inference
+
+MODEL_PATH="models/powerset/powerset_pretrained.ckpt"
+WAV_FILE="../pyannote-audio/tutorials/assets/sample.wav"
+
+model : SpeakerDiarization = Model.from_pretrained(MODEL_PATH)
+inference = Inference(model, step=5.0)
+inference(WAV_FILE)
+```
+
+
+## Reproducing the paper results
 The [pyannote.audio](https://github.com/pyannote/pyannote-audio) version used to train these model is commit [e3dc7d6](https://github.com/pyannote/pyannote-audio/commit/e3dc7d68cc60c7d4f89df005b58674aa936b0882) (although it should not matter for this training, to be more precise it's commit [1f83e0b](https://github.com/pyannote/pyannote-audio/commit/1f83e0b867e5b9e0221e238e7955b7d6fc4ea967) with commit [e3dc7d6](https://github.com/pyannote/pyannote-audio/commit/e3dc7d68cc60c7d4f89df005b58674aa936b0882) changes cherry-picked).
 
-### Training your own powerset segmentation model
+## Training your own powerset segmentation model
 You can train your own version of the model by using the [pyannote.audio](https://github.com/pyannote/pyannote-audio) develop branch (instructions in pyannote.audio's readme), or pyannote.audio v3.x when released.
 
 The `SpeakerDiarization` task can be set to use powerset or multilabel representation with its `max_speakers_per_frame` constructor parameter : "*Maximum number of (overlapping) speakers per frame. Setting this value to 1 or more enables `powerset multi-class` training.*"
