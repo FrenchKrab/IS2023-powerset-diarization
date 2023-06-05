@@ -69,6 +69,13 @@ Performance obtained after training the pretrained model further on one domain.
 
 
 ## Reproducability
+
+### Reproducing the paper results
+The [pyannote.audio](https://github.com/pyannote/pyannote-audio) version used to train these model is commit [e3dc7d6](https://github.com/pyannote/pyannote-audio/commit/e3dc7d68cc60c7d4f89df005b58674aa936b0882) (although it should not matter for this training, to be more precise it's commit [1f83e0b](https://github.com/pyannote/pyannote-audio/commit/1f83e0b867e5b9e0221e238e7955b7d6fc4ea967) with commit [e3dc7d6](https://github.com/pyannote/pyannote-audio/commit/e3dc7d68cc60c7d4f89df005b58674aa936b0882) changes cherry-picked).
+
+More recent versions should also work. You only need to clone/download and install pyannote.audio as well as its dependencies. See pyannote.audio's README for more details.
+
+
 ### Using checkpoints in a pipeline
 ```python
 from pyannote.audio.models.segmentation import PyanNet
@@ -115,11 +122,7 @@ inference = Inference(model, step=5.0)
 inference(WAV_FILE)
 ```
 
-
-## Reproducing the paper results
-The [pyannote.audio](https://github.com/pyannote/pyannote-audio) version used to train these model is commit [e3dc7d6](https://github.com/pyannote/pyannote-audio/commit/e3dc7d68cc60c7d4f89df005b58674aa936b0882) (although it should not matter for this training, to be more precise it's commit [1f83e0b](https://github.com/pyannote/pyannote-audio/commit/1f83e0b867e5b9e0221e238e7955b7d6fc4ea967) with commit [e3dc7d6](https://github.com/pyannote/pyannote-audio/commit/e3dc7d68cc60c7d4f89df005b58674aa936b0882) changes cherry-picked).
-
-## Training your own powerset segmentation model
+### Training your own powerset segmentation model
 You can train your own version of the model by using the [pyannote.audio](https://github.com/pyannote/pyannote-audio) develop branch (instructions in pyannote.audio's readme), or pyannote.audio v3.x when released.
 
 The `SpeakerDiarization` task can be set to use powerset or multilabel representation with its `max_speakers_per_frame` constructor parameter : "*Maximum number of (overlapping) speakers per frame. Setting this value to 1 or more enables `powerset multi-class` training.*"
