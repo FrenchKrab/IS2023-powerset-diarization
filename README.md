@@ -84,7 +84,6 @@ from pyannote.audio.pipelines import SpeakerDiarization as SpeakerDiarizationPip
 # constants (params from the pyannote/speaker-diarization huggingface pipeline)
 WAV_FILE="../pyannote-audio/tutorials/assets/sample.wav"
 MODEL_PATH="models/powerset/powerset_pretrained.ckpt"
-TOKEN = "your HuggingFace token"
 PIPELINE_PARAMS = {
     "clustering": {
         "method": "centroid",
@@ -102,7 +101,7 @@ pipeline = SpeakerDiarizationPipeline(
     segmentation=MODEL_PATH,
     embedding="speechbrain/spkrec-ecapa-voxceleb",
     embedding_exclude_overlap=True,
-    use_auth_token=TOKEN,
+    clustering="AgglomerativeClustering",
 )
 pipeline.instantiate(PIPELINE_PARAMS)
 pipeline(WAV_FILE)
