@@ -1,0 +1,8 @@
+loss: 0.3083382277888451
+params:
+  clustering:
+    method: centroid
+    min_cluster_size: 15
+    threshold: 0.735521583707229
+  segmentation:
+    min_duration_off: 0.0
