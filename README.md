@@ -25,10 +25,6 @@ Proc. InterSpeech 2023.
 
 ## Benchmark (and checkpoints)
 
-### Using the checkpoints
-
-**TODO**
-
 
 ### Pretrained model
 
@@ -75,6 +71,9 @@ The [pyannote.audio](https://github.com/pyannote/pyannote-audio) version used to
 
 More recent versions should also work. You only need to clone/download and install pyannote.audio as well as its dependencies. See pyannote.audio's README for more details.
 
+### Example notebook : Adapting a powerset model and looking at its outputs
+
+[In this notebook available on Google Colab](https://colab.research.google.com/drive/1S7ayat76N-xluD4gvN958O7QCpW8-u0l?usp=sharing), you can see how to load a powerset model (for example, one available in [models/]()), how to train it further on a toy dataset, and finally how to get its local segmentation output and final diarization output.
 
 ### Using checkpoints in a pipeline
 ```python
