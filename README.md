@@ -72,11 +72,11 @@ Performance obtained after training the pretrained model further on one domain.
 ### Reproducing the paper results
 The [pyannote.audio](https://github.com/pyannote/pyannote-audio) version used to train these model is commit [e3dc7d6](https://github.com/pyannote/pyannote-audio/commit/e3dc7d68cc60c7d4f89df005b58674aa936b0882) (although it should not matter for this training, to be more precise it's commit [1f83e0b](https://github.com/pyannote/pyannote-audio/commit/1f83e0b867e5b9e0221e238e7955b7d6fc4ea967) with commit [e3dc7d6](https://github.com/pyannote/pyannote-audio/commit/e3dc7d68cc60c7d4f89df005b58674aa936b0882) changes cherry-picked).
 
-More recent versions should also work. You only need to clone/download and install pyannote.audio as well as its dependencies. See pyannote.audio's README for more details.
+More recent versions should also work. You only need to clone/download and install pyannote.audio and its dependencies. See [pyannote.audio's README](https://github.com/pyannote/pyannote-audio#installation) for more details.
 
 ### Example notebook : Adapting a powerset model and looking at its outputs
 
-[In this notebook available on Google Colab](https://colab.research.google.com/drive/1S7ayat76N-xluD4gvN958O7QCpW8-u0l?usp=sharing), you can see how to load a powerset model (for example, one available in [models/]()), how to train it further on a toy dataset, and finally how to get its local segmentation output and final diarization output.
+[In this notebook available on Google Colab](https://colab.research.google.com/drive/1S7ayat76N-xluD4gvN958O7QCpW8-u0l?usp=sharing), you can see how to load a powerset model (for example, one available in [models/](./models/)), how to train it further on a toy dataset, and finally how to get its local segmentation output and final diarization output.
 
 ### Using checkpoints in a pipeline
 ```python
