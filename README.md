@@ -78,7 +78,11 @@ More recent versions should also work. You only need to clone/download and insta
 
 ### Example notebook : Adapting a powerset model and looking at its outputs
 
-[In this notebook available on Google Colab](https://colab.research.google.com/drive/1S7ayat76N-xluD4gvN958O7QCpW8-u0l?usp=sharing), you can see how to load a powerset model (for example, one available in [models/](./models/)), how to train it further on a toy dataset, and finally how to get its local segmentation output and final diarization output.
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1S7ayat76N-xluD4gvN958O7QCpW8-u0l?usp=sharing)
+
+[![In-repository Notebook](https://img.shields.io/badge/Made%20with-Jupyter-orange?style=for-the-badge&logo=Jupyter)](notebook_ps_diarization.ipynb)
+
+An example notebook is available, you can see how to load a powerset model (for example, one available in [models/](./models/)), how to train it further on a toy dataset, and finally how to get its local segmentation output and final diarization output.
 
 ### Using checkpoints in a pipeline
 ```python
