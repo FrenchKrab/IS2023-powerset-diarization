@@ -32,7 +32,7 @@ Proc. InterSpeech 2023.
 
 Performance obtained with a model pretrained on AISHELL, AliMeeting, AMI, Ego4D, MSDWild, REPERE, and VoxConverse (see the paper for more details).
 
-The [pretrained model checkpoint](models/powerset/powerset_pretrained.ckpt) used to obtain these results is available.
+The [pretrained model checkpoint](models/powerset/powerset_pretrained.ckpt) and [corresponding pipeline hyperparameters](hparams/powerset/pretrained/params.yml) used to obtain these results are available.
 
 
 |Dataset | [DER%](. "Diarization error rate") | [FA%](. "False alarm rate") | [Miss%](. "Missed detection rate") | [Conf%](. "Speaker confusion rate") | Output | Metrics |
